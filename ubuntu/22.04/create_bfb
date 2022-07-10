@@ -267,8 +267,8 @@ sudo depmod -a -b ./ $kernel
 sudo mkdir -p usr/share/misc/ bin/ var/log/watchdog
 sudo cp /usr/share/misc/pci.ids usr/share/misc/
 sudo cp /etc/watchdog.conf etc
-# Make sure we can load mlx-bootctl
-bootctl_ko=`modinfo -F filename -k $kernel mlx-bootctl`
+# Make sure we can load mlxbf-bootctl
+bootctl_ko=`modinfo -F filename -k $kernel mlxbf-bootctl`
 sudo cp $bootctl_ko .
 sudo cp /lib/modules/$kernel/kernel/drivers/watchdog/sbsa_gwdt.ko .
 sudo mkdir -p ./lib/firmware/mellanox/boot/
@@ -296,7 +296,7 @@ printf_msg()
 	return 0
 }
 
-insmod /mlx-bootctl.ko > /dev/null 2>&1
+insmod /mlxbf-bootctl.ko > /dev/null 2>&1
 insmod /sbsa_gwdt.ko > /dev/null 2>&1
 /usr/sbin/watchdog > /dev/null 2>&1
 
