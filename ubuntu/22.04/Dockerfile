@@ -65,7 +65,12 @@ RUN apt install -y -f \
         linux-tools-common \
         bf-release
 
-RUN apt install -y -f doca-runtime doca-tools doca-sdk || true
+#RUN apt install -y -f doca-runtime doca-tools doca-sdk || true
+RUN apt install -y mlxbf-bootctl mlxbf-scripts
+# List of tools in create_bfb
+RUN apt install -y dosfstools e2fsprogs fdisk kmod pciutils usbutils mft mft-oem kernel-mft-modules mstflint
+# provides udev rules
+RUN apt install -y mlnx-ofed-kernel-utils
 RUN apt-mark hold linux-tools-nv-bluefield linux-image-nv-bluefield linux-nv-bluefield linux-headers-nv-bluefield linux-image-nv-bluefield linux-libc-dev linux-tools-common python3
 RUN apt --fix-broken install -y || true
 RUN /bin/rm -f /etc/apt/sources.list.d/doca.tmp.list
@@ -118,4 +123,4 @@ RUN mkdir -p /boot/efi/EFI/ubuntu/; \
 
 RUN sed -i -e "s/signed/@IMAGE_TYPE@@CUSTOM_VERSION@/" /etc/mlnx-release
 
-CMD ["/root/workspace/create_bfb", "-k", "5.15.0-1002-bluefield"]
+CMD ["/root/workspace/create_bfb", "-k", "5.15.0-1002-nv-bluefield"]
