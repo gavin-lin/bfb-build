@@ -123,4 +123,4 @@ RUN mkdir -p /boot/efi/EFI/ubuntu/; \
 
 RUN sed -i -e "s/signed/@IMAGE_TYPE@@CUSTOM_VERSION@/" /etc/mlnx-release
 
-CMD ["/root/workspace/create_bfb", "-k", "5.15.0-1002-bluefield"]
+CMD ["/root/workspace/create_bfb", "-k", "5.15.0-1002-nv-bluefield"]
