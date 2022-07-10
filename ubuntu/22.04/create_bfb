@@ -148,6 +148,8 @@ case "$(file --brief --mime-type "$initramfs")" in
 		cat_initrd="lzcat" ;;
 	"application/x-lz4")
 		cat_initrd="lz4cat" ;;
+	"application/zstd")
+		cat_initrd="zstdcat" ;;
 	*)
 		cat_initrd="zcat" ;;
 esac
